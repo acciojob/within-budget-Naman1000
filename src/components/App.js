@@ -1,5 +1,5 @@
 
-import React from "react";
+import React,{usestate} from "react";
 import './../styles/App.css';
 
 
@@ -29,14 +29,13 @@ export default function App() {
         </thead>
         <tbody>
           {items.map((item, index) => (
-            <tr
-              key={index}
-              style={{
-                color: item.value > price ? "red" : "green",
-              }}
+            <tr key={index}
             >
-              <td>{item.name}</td>
-              <td>{item.value}</td>
+            <td>{item.name}</td>
+              <td style={{
+                color: item.value > price ? "red" : "green",
+              }}>{item.value}</td>
+                
             </tr>
           ))}
         </tbody>
