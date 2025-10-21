@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+
 import './../styles/App.css';
+
+import React from "react";
 
 
 export default function App() {
-  
-  const [price ,setPrice ] = useState(0);
+  const budget = 100;
 
   const items = [
     { name: "Groceries", value: 80 },
@@ -16,9 +17,6 @@ export default function App() {
   return (
     <div id="container">
       <h1>Within Budget</h1>
-      <input type = "number"
-      value = {price} 
-      onChange = {(e) => setPrice(e.target.value)}/>
       <table border="1">
         <thead>
           <tr>
@@ -28,13 +26,13 @@ export default function App() {
         </thead>
         <tbody>
           {items.map((item, index) => (
-            <tr key={index}
+            <tr
+              key={index}
+              id={index + 1} // <- Added ID so Cypress can query
+              style={{ color: item.value > budget ? "red" : "green" }}
             >
-            <td>{item.name}</td>
-              <td style={{
-                color: item.value > price ? "red" : "green",
-              }}>{item.value}</td>
-                
+              <td>{item.name}</td>
+              <td>{item.value}</td>
             </tr>
           ))}
         </tbody>
